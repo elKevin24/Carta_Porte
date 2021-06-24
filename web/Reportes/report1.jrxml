@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4d703031-f6d4-47b5-978e-20ce6340e7dc">
+	<queryString language="SQL">
+		<![CDATA[select * from 
+    puerto.recepcion_web a,  puerto.recepcion_web_detalle b
+    where a.rw_id_recepcion = b.id_recepcion]]>
+	</queryString>
+	<field name="RW_ID_RECEPCION" class="java.math.BigDecimal"/>
+	<field name="RW_PREFIJO_CONT" class="java.lang.String"/>
+	<field name="RW_IDENTIFICACION_CONT" class="java.lang.String"/>
+	<field name="RW_C_O_F" class="java.lang.String"/>
+	<field name="RW_MEDIDA" class="java.math.BigDecimal"/>
+	<field name="RW_NOMBRE_BUQUE" class="java.lang.String"/>
+	<field name="RW_VIAJE_BARCO" class="java.lang.String"/>
+	<field name="RW_FECHA_VIAJE_BARCO" class="java.sql.Timestamp"/>
+	<field name="RW_VIA" class="java.lang.String"/>
+	<field name="RW_REFER_SECO_OPERANDO" class="java.lang.String"/>
+	<field name="RW_NOMBRE_PILOTO" class="java.lang.String"/>
+	<field name="RW_APELLIDO_PILOTO" class="java.lang.String"/>
+	<field name="RW_LICENCIA_PILOTO" class="java.lang.String"/>
+	<field name="RW_PAIS_LICENCIA_PILOTO" class="java.lang.String"/>
+	<field name="RW_CARTA_PORTE" class="java.lang.String"/>
+	<field name="RW_ATC" class="java.lang.String"/>
+	<field name="RW_PREFIJO_CHASIS" class="java.lang.String"/>
+	<field name="RW_IDENTIFICACION_CHASIS" class="java.lang.String"/>
+	<field name="RW_NOMBRE_TRANSPORTISTA" class="java.lang.String"/>
+	<field name="RW_PLACA_CABEZAL" class="java.lang.String"/>
+	<field name="RW_PAIS_PLACA" class="java.lang.String"/>
+	<field name="RW_PESO_CONTENEDOR" class="java.math.BigDecimal"/>
+	<field name="RW_PAIS_ORIGEN" class="java.lang.String"/>
+	<field name="RW_PAIS_DESTINO" class="java.lang.String"/>
+	<field name="RW_DICE_CONTENER" class="java.lang.String"/>
+	<field name="RW_DICE_OBSERVACIONES" class="java.lang.String"/>
+	<field name="RW_USUARIO_SERVICIO" class="java.math.BigDecimal"/>
+	<field name="RW_FECHA_RECEPCION_WEB" class="java.sql.Timestamp"/>
+	<field name="RW_ESTADO_CONT" class="java.lang.String"/>
+	<field name="RW_ESTADO_RECEPCION" class="java.lang.String"/>
+	<field name="RW_NUMERO" class="java.lang.String"/>
+	<field name="RW_MODALIDAD" class="java.lang.String"/>
+	<field name="RW_VACIO" class="java.lang.String"/>
+	<field name="RW_COD_REG" class="java.lang.String"/>
+	<field name="RW_N_ORDEN" class="java.lang.String"/>
+	<field name="RW_OBSERVACIONES" class="java.lang.String"/>
+	<field name="RW_DR" class="java.math.BigDecimal"/>
+	<field name="ID_RECEPCION" class="java.lang.String"/>
+	<group name="RW_ID_RECEPCION">
+		<groupExpression><![CDATA[$F{RW_ID_RECEPCION}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
