@@ -66,22 +66,26 @@ public class BeanCartaBarcos {
     public void setESTRUCTURA(String ESTRUCTURA) {
         this.ESTRUCTURA = ESTRUCTURA;
     }
-    
-    
+
+    public String getUSUARIO() {
+        return USUARIO;
+    }
+
+    public void setUSUARIO(String USUARIO) {
+        this.USUARIO = USUARIO;
+    }
+
     
     
 
-    public BeanCartaBarcos(String LR, String SENAL, String NOMBRE, String TRB,
-            String TRN, String TPM, String ESTRUCTURA, String Pais_TPM, String Pasaporte, String expiracion, String Pais_pasaporte
+    public BeanCartaBarcos(String LR, String SENAL, String NOMBRE, String ESTRUCTURA, String USUARIO
     ) {
 
         this.LR = LR;
         this.SENAL = SENAL;
         this.NOMBRE = NOMBRE;
-        this.TRB = TRB;
-        this.TRN = TRN;
-        this.TPM = TPM;
         this.ESTRUCTURA = ESTRUCTURA;
+        this.USUARIO = USUARIO;
 
     }
 
@@ -92,6 +96,7 @@ public class BeanCartaBarcos {
     private String TRN;
     private String TPM;
     private String ESTRUCTURA;
+    private String USUARIO;
 
     public BeanCartaBarcos() {
     }

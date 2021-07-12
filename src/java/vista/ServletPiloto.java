@@ -5,7 +5,6 @@
  */
 package vista;
 
-
 import controlador.BeanPilotos;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,7 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.Pilotos;
-
 
 /**
  *
@@ -65,9 +63,6 @@ public class ServletPiloto extends HttpServlet {
             throws ServletException, IOException {
 
         PrintWriter out = response.getWriter();
-        
-        
-        
 
         String ID = request.getParameter("ID");
         String Nombre = request.getParameter("Nombre");
@@ -81,35 +76,31 @@ public class ServletPiloto extends HttpServlet {
         String expiracion = request.getParameter("expiracion");
         String Pais_pasaporte = request.getParameter("Pais_pasaporte");
 
-        
-
         BeanPilotos carta;
 
         System.err.println("" + Nombre);
 
         carta = new BeanPilotos(ID, Nombre, SegundoNombre, Apellido,
-                SegundoApellido, Licencia, TipoLicencia, 
+                SegundoApellido, Licencia, TipoLicencia,
                 Pais_licencia, Pasaporte, expiracion,
                 Pais_pasaporte);
 
         boolean recepcion = Pilotos.agregar(carta);
 
         if (recepcion) {
-            
+
             try {
-            //Ponemos a "Dormir" el programa durante los ms que queremos
-            Thread.sleep(1000);
-         } catch (InterruptedException e) {
-            System.out.println(e);
-         }
+                //Ponemos a "Dormir" el programa durante los ms que queremos
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                System.out.println(e);
+            }
             response.sendRedirect("GuardadoP.jsp");
 
         } else {
             out.println(recepcion);
 
         }
-
-        
 
     }
 

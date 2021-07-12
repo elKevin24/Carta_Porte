@@ -18,13 +18,13 @@
   </style>
   <title>Refrescar la URL</title> 
   
-<META HTTP-EQUIV="REFRESH" CONTENT="2;URL=pilotos.jsp"> 
+<META HTTP-EQUIV="REFRESH" CONTENT="2;URL=carta_porte.jsp"> 
   
 </head> 
 <body> 
     
     
-<center> <h1> Piloto Guardado</h1></center>
+<center> <h1> Registro Guardado</h1></center>
 
     <center> <img src="IMG/EMPORNAC_logo.png" width="400" alt=""/> </center>
 Hora: 

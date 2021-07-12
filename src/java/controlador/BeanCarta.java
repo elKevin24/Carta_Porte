@@ -9,9 +9,8 @@ package controlador;
  *
  * @author kcordon
  */
-public class BeanCarta {  
+public class BeanCarta {
 
-     
     public String getRW_ID_RECEPCION() {
         return RW_ID_RECEPCION;
     }
@@ -59,15 +58,6 @@ public class BeanCarta {
     public void setRW_ESTADO_CONT(String RW_ESTADO_CONT) {
         this.RW_ESTADO_CONT = RW_ESTADO_CONT;
     }
-    
-
-    public String getRW_NOMBRE_BUQUE() {
-        return RW_NOMBRE_BUQUE;
-    }
-
-    public void setRW_NOMBRE_BUQUE(String RW_NOMBRE_BUQUE) {
-        this.RW_NOMBRE_BUQUE = RW_NOMBRE_BUQUE;
-    }
 
     public String getRW_VIAJE_BARCO() {
         return RW_VIAJE_BARCO;
@@ -101,46 +91,6 @@ public class BeanCarta {
         this.RW_REFER_SECO_OPERANDO = RW_REFER_SECO_OPERANDO;
     }
 
-    public String getRW_NOMBRE_PILOTO() {
-        return RW_NOMBRE_PILOTO;
-    }
-
-    public void setRW_NOMBRE_PILOTO(String RW_NOMBRE_PILOTO) {
-        this.RW_NOMBRE_PILOTO = RW_NOMBRE_PILOTO;
-    }
-
-    public String getRW_APELLIDO_PILOTO() {
-        return RW_APELLIDO_PILOTO;
-    }
-
-    public void setRW_APELLIDO_PILOTO(String RW_APELLIDO_PILOTO) {
-        this.RW_APELLIDO_PILOTO = RW_APELLIDO_PILOTO;
-    }
-
-    public String getRW_LICENCIA_PILOTO() {
-        return RW_LICENCIA_PILOTO;
-    }
-
-    public void setRW_LICENCIA_PILOTO(String RW_LICENCIA_PILOTO) {
-        this.RW_LICENCIA_PILOTO = RW_LICENCIA_PILOTO;
-    }
-
-    public String getRW_PAIS_LICENCIA_PILOTO() {
-        return RW_PAIS_LICENCIA_PILOTO;
-    }
-
-    public void setRW_PAIS_LICENCIA_PILOTO(String RW_PAIS_LICENCIA_PILOTO) {
-        this.RW_PAIS_LICENCIA_PILOTO = RW_PAIS_LICENCIA_PILOTO;
-    }
-
-    public String getRW_CARTA_PORTE() {
-        return RW_CARTA_PORTE;
-    }
-
-    public void setRW_CARTA_PORTE(String RW_CARTA_PORTE) {
-        this.RW_CARTA_PORTE = RW_CARTA_PORTE;
-    }
-
     public String getRW_ATC() {
         return RW_ATC;
     }
@@ -163,14 +113,6 @@ public class BeanCarta {
 
     public void setRW_IDENTIFICACION_CHASIS(String RW_IDENTIFICACION_CHASIS) {
         this.RW_IDENTIFICACION_CHASIS = RW_IDENTIFICACION_CHASIS;
-    }
-
-    public String getRW_NOMBRE_TRANSPORTISTA() {
-        return RW_NOMBRE_TRANSPORTISTA;
-    }
-
-    public void setRW_NOMBRE_TRANSPORTISTA(String RW_NOMBRE_TRANSPORTISTA) {
-        this.RW_NOMBRE_TRANSPORTISTA = RW_NOMBRE_TRANSPORTISTA;
     }
 
     public String getRW_PLACA_CABEZAL() {
@@ -245,14 +187,117 @@ public class BeanCarta {
         this.RW_FECHA_RECEPCION_WEB = RW_FECHA_RECEPCION_WEB;
     }
 
+    public String getRW_ID_PILOTO() {
+        return RW_ID_PILOTO;
+    }
+
+    public void setRW_ID_PILOTO(String RW_ID_PILOTO) {
+        this.RW_ID_PILOTO = RW_ID_PILOTO;
+    }
+
+    public String getRW_ID_TRANSPORTISTA() {
+        return RW_ID_TRANSPORTISTA;
+    }
+
+    public void setRW_ID_TRANSPORTISTA(String RW_ID_TRANSPORTISTA) {
+        this.RW_ID_TRANSPORTISTA = RW_ID_TRANSPORTISTA;
+    }
+
+    public String getRW_LR() {
+        return RW_LR;
+    }
+
+    public void setRW_LR(String RW_LR) {
+        this.RW_LR = RW_LR;
+    }
+
+    public String getRW_SENAL_DISTINTIVA() {
+        return RW_SENAL_DISTINTIVA;
+    }
+
+    public void setRW_SENAL_DISTINTIVA(String RW_SENAL_DISTINTIVA) {
+        this.RW_SENAL_DISTINTIVA = RW_SENAL_DISTINTIVA;
+    }
+
+    public String getNOMBRE_PILOTO() {
+        return NOMBRE_PILOTO;
+    }
+
+    public void setNOMBRE_PILOTO(String NOMBRE_PILOTO) {
+        this.NOMBRE_PILOTO = NOMBRE_PILOTO;
+    }
+
+    public String getLICENCIA_PILOTO() {
+        return LICENCIA_PILOTO;
+    }
+
+    public void setLICENCIA_PILOTO(String LICENCIA_PILOTO) {
+        this.LICENCIA_PILOTO = LICENCIA_PILOTO;
+    }
+
+    public String getNOMBRE_BUQUE() {
+        return NOMBRE_BUQUE;
+    }
+
+    public void setNOMBRE_BUQUE(String NOMBRE_BUQUE) {
+        this.NOMBRE_BUQUE = NOMBRE_BUQUE;
+    }
+
+    public String getRW_ESTADO() {
+        return RW_ESTADO;
+    }
+
+    public void setRW_ESTADO(String RW_ESTADO) {
+        this.RW_ESTADO = RW_ESTADO;
+    }
+
+    public String getRWTE_ID() {
+        return RWTE_ID;
+    }
+
+    public void setRWTE_ID(String RWTE_ID) {
+        this.RWTE_ID = RWTE_ID;
+    }
+
+    public String getRWTE_RWE() {
+        return RWTE_RWE;
+    }
+
+    public void setRWTE_RWE(String RWTE_RWE) {
+        this.RWTE_RWE = RWTE_RWE;
+    }
+
+    public String getRWTE_FECHA() {
+        return RWTE_FECHA;
+    }
+
+    public void setRWTE_FECHA(String RWTE_FECHA) {
+        this.RWTE_FECHA = RWTE_FECHA;
+    }
+
+    public String getRw_observaciones_opip() {
+        return rw_observaciones_opip;
+    }
+
+    public void setRw_observaciones_opip(String rw_observaciones_opip) {
+        this.rw_observaciones_opip = rw_observaciones_opip;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     
 
     public BeanCarta(String RW_ID_RECEPCION, String RW_PREFIJO_CONT, String RW_IDENTIFICACION_CONT,
-            String RW_C_O_F, String RW_MEDIDA, String RW_ESTADO_CONT, String RW_NOMBRE_BUQUE, String RW_VIAJE_BARCO , String RW_FECHA_VIAJE_BARCO
-    ,  String RW_REFER_SECO_OPERANDO, String RW_NOMBRE_PILOTO, String RW_APELLIDO_PILOTO, String RW_LICENCIA_PILOTO
-    , String RW_PAIS_LICENCIA_PILOTO, String RW_CARTA_PORTE, String RW_ATC, String RW_PREFIJO_CHASIS, String RW_IDENTIFICACION_CHASIS
-    , String RW_NOMBRE_TRANSPORTISTA, String RW_PLACA_CABEZAL, String RW_PAIS_PLACA, String RW_PESO_CONTENEDOR, String RW_PAIS_ORIGEN
-    , String RW_PAIS_DESTINO, String RW_DICE_CONTENER, String RW_DICE_OBSERVACIONES, String RW_USUARIO_SERVICIO) {
+            String RW_C_O_F, String RW_MEDIDA, String RW_ESTADO_CONT, String RW_VIAJE_BARCO, String RW_FECHA_VIAJE_BARCO,
+            String RW_REFER_SECO_OPERANDO, String RW_ATC, String RW_PREFIJO_CHASIS, String RW_IDENTIFICACION_CHASIS,
+            String RW_PLACA_CABEZAL, String RW_PAIS_PLACA, String RW_PESO_CONTENEDOR, String RW_PAIS_ORIGEN,
+            String RW_PAIS_DESTINO, String RW_DICE_CONTENER, String RW_DICE_OBSERVACIONES, String RW_USUARIO_SERVICIO,
+            String RW_ID_PILOTO, String RW_ID_TRANSPORTISTA, String RW_LR, String RW_SENAL_DISTINTIVA) {
 
         this.RW_ID_RECEPCION = RW_ID_RECEPCION;
         this.RW_PREFIJO_CONT = RW_PREFIJO_CONT;
@@ -260,20 +305,12 @@ public class BeanCarta {
         this.RW_C_O_F = RW_C_O_F;
         this.RW_MEDIDA = RW_MEDIDA;
         this.RW_ESTADO_CONT = RW_ESTADO_CONT;
-        this.RW_NOMBRE_BUQUE = RW_NOMBRE_BUQUE;
         this.RW_VIAJE_BARCO = RW_VIAJE_BARCO;
         this.RW_FECHA_VIAJE_BARCO = RW_FECHA_VIAJE_BARCO;
-        
         this.RW_REFER_SECO_OPERANDO = RW_REFER_SECO_OPERANDO;
-        this.RW_NOMBRE_PILOTO = RW_NOMBRE_PILOTO;
-        this.RW_APELLIDO_PILOTO = RW_APELLIDO_PILOTO;
-        this.RW_LICENCIA_PILOTO = RW_LICENCIA_PILOTO;
-        this.RW_PAIS_LICENCIA_PILOTO = RW_PAIS_LICENCIA_PILOTO;
-        this.RW_CARTA_PORTE = RW_CARTA_PORTE;
         this.RW_ATC = RW_ATC;
         this.RW_PREFIJO_CHASIS = RW_PREFIJO_CHASIS;
         this.RW_IDENTIFICACION_CHASIS = RW_IDENTIFICACION_CHASIS;
-        this.RW_NOMBRE_TRANSPORTISTA = RW_NOMBRE_TRANSPORTISTA;
         this.RW_PLACA_CABEZAL = RW_PLACA_CABEZAL;
         this.RW_PAIS_PLACA = RW_PAIS_PLACA;
         this.RW_PESO_CONTENEDOR = RW_PESO_CONTENEDOR;
@@ -282,7 +319,10 @@ public class BeanCarta {
         this.RW_DICE_CONTENER = RW_DICE_CONTENER;
         this.RW_DICE_OBSERVACIONES = RW_DICE_OBSERVACIONES;
         this.RW_USUARIO_SERVICIO = RW_USUARIO_SERVICIO;
-       
+        this.RW_ID_PILOTO = RW_ID_PILOTO;
+        this.RW_ID_TRANSPORTISTA = RW_ID_TRANSPORTISTA;
+        this.RW_LR = RW_LR;
+        this.RW_SENAL_DISTINTIVA = RW_SENAL_DISTINTIVA;
 
     }
 
@@ -291,21 +331,15 @@ public class BeanCarta {
     private String RW_IDENTIFICACION_CONT;
     private String RW_C_O_F;
     private String RW_MEDIDA;
+    private String RW_ESTADO;
     private String RW_ESTADO_CONT;
-    private String RW_NOMBRE_BUQUE;
     private String RW_VIAJE_BARCO;
     private String RW_FECHA_VIAJE_BARCO;
     private String RW_VIA;
     private String RW_REFER_SECO_OPERANDO;
-    private String RW_NOMBRE_PILOTO;
-    private String RW_APELLIDO_PILOTO;
-    private String RW_LICENCIA_PILOTO;
-    private String RW_PAIS_LICENCIA_PILOTO;
-    private String RW_CARTA_PORTE;
     private String RW_ATC;
     private String RW_PREFIJO_CHASIS;
     private String RW_IDENTIFICACION_CHASIS;
-    private String RW_NOMBRE_TRANSPORTISTA;
     private String RW_PLACA_CABEZAL;
     private String RW_PAIS_PLACA;
     private String RW_PESO_CONTENEDOR;
@@ -315,6 +349,22 @@ public class BeanCarta {
     private String RW_DICE_OBSERVACIONES;
     private String RW_USUARIO_SERVICIO;
     private String RW_FECHA_RECEPCION_WEB;
+    private String RW_ID_PILOTO;
+    private String NOMBRE_PILOTO;
+    private String LICENCIA_PILOTO;    
+    private String RW_ID_TRANSPORTISTA;
+    private String RW_LR;
+    private String RW_SENAL_DISTINTIVA;
+    private String NOMBRE_BUQUE;
+    
+    
+    private String RWTE_ID;
+    private String RWTE_RWE;    
+    private String RWTE_FECHA;
+    private String rw_observaciones_opip;
+    
+    
+    
 
     public BeanCarta() {
     }

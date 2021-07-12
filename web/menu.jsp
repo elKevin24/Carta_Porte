@@ -78,9 +78,8 @@
                                     <ul>
 
                                         <li><a href="Consulta.jsp">Creados</a></li>
-                                        <li><a href="ConsultaPendientes.jsp">Pendientes</a></li>
-                                        <li><a href="ConsultaAprobados.jsp">Aprobados</a></li>
-                                        <li><a href="ConsultaEliminados.jsp">Eliminados</a></li>
+                                        <li><a href="EstadoCarta.jsp">Estado Carta Porte</a></li>
+                                        
 
                                     </ul>
                                 </div>

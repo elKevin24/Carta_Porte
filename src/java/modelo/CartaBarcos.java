@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class CartaBarcos {
 
-    public static boolean agregar(BeanPilotos P) {
+    public static boolean agregar(BeanCartaBarcos P) {
         boolean agregado = false;
 
         try {
@@ -31,8 +31,7 @@ public class CartaBarcos {
                 Statement st;
                 st = con.createStatement();
                 //campos de la tabla
-                String sql = "INSERT INTO puerto.eopt_visitantes ( visitante, tipo_visitante, nombre_uno, nombre_dos, apellido_uno, apellido_dos, pasaporte, pais_pasaporte, fecha_vence_pasaporte, numero_licencia,tipo_licencia, pais_licencia, estatus,grabador, fecha_grabacion\n"
-                        + ") VALUES ('" + P.getID() + "',1, '" + P.getNombre() + "','" + P.getSegundoNombre() + "','" + P.getApellido() + "' ,'" + P.getSegundoApellido() + "' ,'" + P.getPasaporte() + "','','" + P.getexpiracion() + "','" + P.getLicencia() + "','" + P.getTipoLicencia() + "','" + P.getPais_licencia() + "', 'A', 'KCORDON', sysdate)";
+                String sql = "INSERT INTO puerto.eopt_barcos ( LR, SENAL_DISTINTIVA, NOMBRE_DEL_BUQUE, TIPO_DE_BARCO_POR_ESTRUCTURA, USUARIO_DE_SERVICIO) VALUES ('" + P.getLR()+ "', '" + P.getSENAL()+ "','" + P.getNOMBRE()+ "','" + P.getESTRUCTURA()+ "','" + P.getUSUARIO()+ "' )";
 
 //               INSERT INTO COTIZADOR_WEB.CW_EOPT_BARCOS (LR, SENAL_DISTINTICA, TIPO_DE_BARCO_POR_ESTRUCTURA, USUARIO_DE_SERVICIO, NOMBRE_DEL_BUQUE, BANDERA, TRB, TRN, TPM, CALADO, ESLORA, MANGA, BITA_USUARIO_INSERTA) VALUES "
 //                      + "('"+ En.getLR()+"','"+En.getSENAL_DISTINTIVA()+"','"+En.getTIPO_DE_BARCO_POR_ESTRUCTURA()+"',"+En.getUSUARIO_DE_SERVICIO()+" ,'"+En.getNOMBRE_DEL_BUQUE()+"' ,'"+En.getBANDERA()+"','"+En.getTRB()+"','"+En.getTRN()+"','"+En.getTPM()+"','"+En.getCALADO()+"','"+En.getESLORA()+"','"+En.getMANGA()+"','"+En.getBITA_USUARIO_INSERTA()+"')";
@@ -49,8 +48,8 @@ public class CartaBarcos {
         }
         return agregado;
     }
-
-    public static LinkedList<BeanCartaBarcos> ConsultarLista() throws SQLException {
+    
+     public static LinkedList<BeanCartaBarcos> ConsultarLista() throws SQLException {
         LinkedList<BeanCartaBarcos> datos = new LinkedList<>();
 
         try {
@@ -76,145 +75,6 @@ public class CartaBarcos {
         }
 
         return datos;
-    }
-
-    //Metodo para cambiar estado 
-    public static boolean CambiarEstado(String id) {
-        boolean actualizado = false;
-
-        try {
-            Conexion c = new Conexion();
-            Connection con = c.getConexion();
-            if (con != null) {
-                Statement st;
-                st = con.createStatement();
-                //UNA COMA ME HIZO DESVELARME HASTA LAS DOS DE LA MAÑANA
-                String sql = "UPDATE puerto.recepcion_web\n"
-                        + "SET\n"
-                        + "    RW_ESTADO_RECEPCION = 1\n"
-                        + "WHERE\n"
-                        + "    rw_id_recepcion = " + id + "";
-                //"update tbl_seccion set grado ='"+usuario.getGrado()+"', seccion='"+usuario.getSeccion()+"', Id_nivel='"+usuario.getId_nivel()+"' where Id_seccion="+usuario.getId_seccion()+"";
-
-                st.execute(sql);
-                actualizado = true;
-                st.close();
-            }
-
-        } catch (SQLException e) {
-            actualizado = false;
-        }
-
-        return actualizado;
-    }
-
-    public static BeanPilotos Consultar() {
-        BeanPilotos user = new BeanPilotos();
-        System.out.println("entrando a consultar");
-
-        try {
-            Conexion c = new Conexion();
-            try (Connection con = c.getConexion()) {
-                Statement st;
-                st = con.createStatement();
-                try (ResultSet rs = st.executeQuery("select nvl(max(visitante), 0)+1  visitante\n"
-                        + "from\n"
-                        + "puerto.eopt_visitantes")) {
-                    while (rs.next()) {
-
-                        user.setID(rs.getString("visitante"));
-                    }
-                }
-                st.close();
-            }
-        } catch (SQLException e) {
-
-            System.err.println("" + e);
-        }
-        return user;
-
-    }
-
-    public static BeanPilotos ConsultarPiloto(String id) {
-        BeanPilotos user = new BeanPilotos();
-
-        try {
-            Conexion c = new Conexion();
-            try (Connection con = c.getConexion()) {
-                Statement st;
-                st = con.createStatement();
-                try (ResultSet rs = st.executeQuery("SELECT\n"
-                        + "    visitante,\n"
-                        + "    nvl(nombre_uno, ' ') nombre,\n"
-                        + "    nvl(nombre_dos, ' ') nombre_dos,\n"
-                        + "    nvl(apellido_uno, ' ') apellido,\n"
-                        + "    nvl(apellido_dos, ' ') apellido_dos,\n"
-                        + "    numero_licencia,\n"
-                        + "    pais_licencia from\n"
-                        + "    puerto.eopt_visitantes\n"
-                        + "WHERE\n"
-                        + "    tipo_visitante = 1\n"
-                        + "    AND estatus = 'A'\n"
-                        + "    and visitante = " + id + "")) {
-                    while (rs.next()) {
-                        user.setID(rs.getString("visitante"));
-                        user.setNombre(rs.getString("nombre"));
-                        user.setSegundoNombre(rs.getString("nombre_dos"));
-                        user.setApellido(rs.getString("apellido"));
-                        user.setSegundoApellido(rs.getString("apellido_dos"));
-                        user.setLicencia(rs.getString("numero_licencia"));
-                        user.setPais_licencia(rs.getString("pais_licencia"));
-                    }
-                }
-                st.close();
-            }
-        } catch (SQLException e) {
-
-            System.err.println("Consultar Piloto" + e);
-        }
-        return user;
-
-    }
-
-    public List<BeanPilotos> getPiloto(String filtro) throws SQLException {
-        List<BeanPilotos> lista = new ArrayList<>();
-
-        String query = "SELECT * FROM jugador "
-                + "WHERE nombre LIKE '%" + filtro + "%' OR "
-                + "pais LIKE '%" + filtro + "%' OR "
-                + "posicion LIKE '%" + filtro + "%' OR "
-                + "equipo LIKE '%" + filtro + "%' OR "
-                + "dorsal LIKE '%" + filtro + "%';";
-        Conexion c = new Conexion();
-        try (Connection con = c.getConexion()) {
-
-            Statement st;
-            st = con.createStatement();
-
-            try (ResultSet rs = st.executeQuery(query)) {
-                while (rs.next()) {
-                    BeanPilotos user = new BeanPilotos();
-
-                    user.setID(rs.getString("visitante"));
-                    user.setNombre(rs.getString("nombre"));
-                    user.setSegundoNombre(rs.getString("nombre_dos"));
-                    user.setApellido(rs.getString("apellido"));
-                    user.setSegundoApellido(rs.getString("apellido_dos"));
-                    user.setLicencia(rs.getString("numero_licencia"));
-
-                    lista.add(user);
-
-                }
-            }
-            st.close();
-
-            con.close();
-
-        } catch (SQLException e) {
-            System.err.println("ConsultarLista" + e);
-        }
-        return lista;
-
     }
 
 }

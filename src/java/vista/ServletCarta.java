@@ -7,7 +7,6 @@ package vista;
 
 import controlador.BeanCarta;
 import controlador.BeanCarta_Detalle;
-import controlador.BeanPilotos;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -16,7 +15,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.Carta;
-import modelo.Pilotos;
 import modelo.detalle_carta;
 
 /**
@@ -66,14 +64,14 @@ public class ServletCarta extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        
-        
-        String Id_piloto =request.getParameter("PILOTO"); 
         PrintWriter out = response.getWriter();
-        BeanPilotos piloto = new BeanPilotos();
-        piloto = Pilotos.ConsultarPiloto(Id_piloto);
-            
-            
+
+        String BUQUE = request.getParameter("BUQUE");
+        int salida = BUQUE.indexOf("S");
+        String SENAL = BUQUE.substring(0, salida);
+        String LR = BUQUE.substring(salida + 1);
+        String Id_piloto = request.getParameter("PILOTO");
+        String TRANSPORTISTA = request.getParameter("TRANSPORTISTA");
 
         String CWBC_ETA = request.getParameter("RW_FECHA_VIAJE_BARCO");
 
@@ -82,9 +80,9 @@ public class ServletCarta extends HttpServlet {
         CWBC_ETA = CWBC_ETA.replace('T', ' ');
         RW_FECHA_VIAJE_BARCO = CWBC_ETA + ":00";
         String RW_ID_RECEPCION = request.getParameter("RW_ID_RECEPCION").toUpperCase();
-        String RW_CARTA_PORTE = request.getParameter("RW_CARTA_PORTE");
+
         String RW_ATC = request.getParameter("RW_ATC").toUpperCase();
-        String RW_NOMBRE_BUQUE = request.getParameter("RW_NOMBRE_BUQUE").toUpperCase();
+
         String RW_VIAJE_BARCO = request.getParameter("RW_VIAJE_BARCO").toUpperCase();
 
         String RW_PREFIJO_CONT = request.getParameter("RW_PREFIJO_CONT").toUpperCase();
@@ -98,44 +96,33 @@ public class ServletCarta extends HttpServlet {
         String RW_PAIS_DESTINO = request.getParameter("RW_PAIS_DESTINO").toUpperCase();
         String RW_DICE_CONTENER = request.getParameter("RW_DICE_CONTENER").toUpperCase();
         String RW_DICE_OBSERVACIONES = request.getParameter("RW_DICE_OBSERVACIONES").toUpperCase();
-        String RW_NOMBRE_TRANSPORTISTA = request.getParameter("RW_NOMBRE_TRANSPORTISTA").toUpperCase();
+
         String RW_PLACA_CABEZAL = request.getParameter("RW_PLACA_CABEZAL").toUpperCase();
         String RW_PAIS_PLACA = request.getParameter("RW_PAIS_PLACA").toUpperCase();
         String RW_PREFIJO_CHASIS = request.getParameter("RW_PREFIJO_CHASIS").toUpperCase();
         String RW_IDENTIFICACION_CHASIS = request.getParameter("RW_IDENTIFICACION_CHASIS").toUpperCase();
-        
-        
-        piloto.getNombre();
-            
-           
-            piloto.getSegundoApellido();
-            
-        String RW_NOMBRE_PILOTO = piloto.getNombre();
-        String RW_APELLIDO_PILOTO = piloto.getSegundoNombre();
-        String RW_LICENCIA_PILOTO =  piloto.getLicencia();
-        String RW_PAIS_LICENCIA_PILOTO = piloto.getPais_licencia();
-        
-        
-        String RW_USUARIO_SERVICIO = request.getParameter("RW_USUARIO_SERVICIO");
 
-        BeanCarta carta;
+        String RW_USUARIO_SERVICIO = request.getParameter("USUARIO_DE_SERVICIO");
+
+        out.println("BUQUE: " + BUQUE + " salida: " + salida + " LR: " + LR + " SENAL: " + SENAL);
+        System.out.println("BUQUE: " + BUQUE + " salida: " + salida + " LR: " + LR + " SENAL: " + SENAL);
+
+        BeanCarta carta = null;
 
         System.err.println(" " + RW_FECHA_VIAJE_BARCO);
 
         carta = new BeanCarta(RW_ID_RECEPCION, RW_PREFIJO_CONT, RW_IDENTIFICACION_CONT,
-                RW_C_O_F, RW_MEDIDA, RW_ESTADO_CONT, RW_NOMBRE_BUQUE, RW_VIAJE_BARCO, RW_FECHA_VIAJE_BARCO,
-                RW_REFER_SECO_OPERANDO, RW_NOMBRE_PILOTO, RW_APELLIDO_PILOTO, RW_LICENCIA_PILOTO,
-                RW_PAIS_LICENCIA_PILOTO, RW_CARTA_PORTE, RW_ATC, RW_PREFIJO_CHASIS, RW_IDENTIFICACION_CHASIS,
-                RW_NOMBRE_TRANSPORTISTA, RW_PLACA_CABEZAL, RW_PAIS_PLACA, RW_PESO_CONTENEDOR, RW_PAIS_ORIGEN,
-                RW_PAIS_DESTINO, RW_DICE_CONTENER, RW_DICE_OBSERVACIONES,
-                RW_USUARIO_SERVICIO);
-
+                RW_C_O_F, RW_MEDIDA, RW_ESTADO_CONT, RW_VIAJE_BARCO, RW_FECHA_VIAJE_BARCO,
+                RW_REFER_SECO_OPERANDO, RW_ATC, RW_PREFIJO_CHASIS, RW_IDENTIFICACION_CHASIS,
+                RW_PLACA_CABEZAL, RW_PAIS_PLACA, RW_PESO_CONTENEDOR, RW_PAIS_ORIGEN,
+                RW_PAIS_DESTINO, RW_DICE_CONTENER, RW_DICE_OBSERVACIONES, RW_USUARIO_SERVICIO, Id_piloto, TRANSPORTISTA, LR, SENAL
+        );
         boolean recepsion = Carta.agregar(carta);
+        
 
         if (recepsion) {
-            
+
             System.err.println("se guardo carta falta DA");
-            
 
         } else {
             out.println(recepsion);
@@ -144,7 +131,7 @@ public class ServletCarta extends HttpServlet {
 
         if (request.getParameter("cont").isEmpty()) {
             System.err.println("is empty");
-            response.sendRedirect("carta_porte.jsp");
+            response.sendRedirect("Guardado.jsp?id="+ RW_ID_RECEPCION+"");
         } else {
             //Empieza parte de Detalle
             int cont = Integer.valueOf(request.getParameter("cont"));
@@ -157,7 +144,6 @@ public class ServletCarta extends HttpServlet {
             boolean k = false;
 
             // lo envio pero no afecta en el insert
-
             int numero = 4; //numero de inputs
             String[][] detalle = new String[cont][numero];
 
@@ -166,7 +152,7 @@ public class ServletCarta extends HttpServlet {
                 for (int j = 1; j < detalle[i].length; j++) {
 
                 }
-                detalle[i][1] = request.getParameter("DA[" + a + "]").toUpperCase();                
+                detalle[i][1] = request.getParameter("DA[" + a + "]").toUpperCase();
                 detalle[i][2] = request.getParameter("Numero_Orden[" + a + "]").toUpperCase();
                 detalle[i][3] = request.getParameter("Observaciones[" + a + "]").toUpperCase();
                 //Aqui vas obteniendo el id del curso
@@ -186,7 +172,7 @@ public class ServletCarta extends HttpServlet {
 
                 }
 
-                CD = new BeanCarta_Detalle( detalle[i][1],RW_ID_RECEPCION, detalle[i][2], detalle[i][3]);
+                CD = new BeanCarta_Detalle(detalle[i][1], RW_ID_RECEPCION, detalle[i][2], detalle[i][3]);
                 k = detalle_carta.agregar(CD);
             }
 
@@ -194,7 +180,7 @@ public class ServletCarta extends HttpServlet {
                 //response.sendRedirect("carta_porte.jsp");
 
                 System.out.println("exito detalle");
-                response.sendRedirect("carta_porte.jsp");
+                response.sendRedirect("Guardado.jsp?id="+ RW_ID_RECEPCION+"");
 
             } else {
 

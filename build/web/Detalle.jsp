@@ -92,7 +92,7 @@
                                 <tr>
                                     <th>
 
-                                        <p><img src="img/EMPORNAC_logo.png"></p>
+                                        <p><img id="logo" src="img/EMPORNAC_logo.png"></p>
                                     </th>
                                     <th colspan="7"  class="text-center">
                                         <p>EMPRESA PORTUARIA NACIONAL "SANTO TOMAS DE CASTILLA"</p> 
@@ -102,17 +102,17 @@
                                 </tr>
                             </thead>
 
-                            <thead>
+                            <tbody>
                                 <tr>
-                                    <th colspan="2" class="text-center">
+                                    <td colspan="2" class="text-center">
                                         Numero Carta Porte: <%= enc.getRW_ID_RECEPCION()%>
-                                </th>
-                                <th colspan="4" class="text-center">
+                                </td>
+                                <td colspan="4" class="text-center">
                                     SERVICIOS NAVIEROS Y PORTUARIOS, S.A.  (SERNAPORT)
-                                </th>
-                                <th colspan="2" class="text-center">
+                                </td>
+                                <td colspan="2" class="text-center">
                                     Fecha Creacion: <%= enc.getRW_FECHA_RECEPCION_WEB().substring(0, 16)%>
-                                </th>
+                                </td>
 
                             </tr>
                             <tr class="blue lighten-2">
@@ -122,50 +122,78 @@
 
                             </tr>
                             <tr>
-                                <th colspan="2">
-                                    Contenedor/Furgon: <%= enc.getRW_C_O_F().toUpperCase()%>
-
+                                <th>
+                                    Contenedor/Furgon
                                 </th>
-                                <th colspan="2">
-                                    Contenedor: <%= enc.getRW_PREFIJO_CONT()%> <%= enc.getRW_IDENTIFICACION_CONT()%>
-
-
+                                <th>
+                                    Contenedor
                                 </th>
+                                <th>
+                                    Medida
+                                    
+                                </th>
+                                <th>
+                                    Peso
+                                </th>
+                                <th>
+                                    Condiciones
+                                </th>
+                                <th>
+                                    Condiciones
+                                </th>
+                                <th>
+                                    Pais Origen
+                                </th>
+                                <th>
+                                    Pais Destino 
+                                </th>
+                            </tr>
 
-                                <th colspan="2">
-                                    Medida:
+                            <tr>
+                                <td>
+                                    <%= enc.getRW_C_O_F().toUpperCase()%>
+                                </td>
+                                <td>
+                                    <%= enc.getRW_PREFIJO_CONT()%> <%= enc.getRW_IDENTIFICACION_CONT()%>
+                                </td>
+                                <td>
+                                    
                                     <%= enc.getRW_MEDIDA()%>
-                                </th>
-                                <th colspan="2">
-                                    Peso:  <%= enc.getRW_PESO_CONTENEDOR()%>
-                                </th>
-                            </tr>
-
-                            <tr>
-
-
-                                <th colspan="2">
-                                    Condiciones:  <%= enc.getRW_ESTADO_CONT()%>
-                                </th>
-                                <th colspan="2">
-                                    Condiciones:  <%= enc.getRW_REFER_SECO_OPERANDO()%>
-                                </th>
-                                <th colspan="2">
-                                    Pais Origen: <%= enc.getRW_PAIS_ORIGEN()%>
-                                </th>
-                                <th colspan="2">
-                                    Pais Destino <%= enc.getRW_PAIS_DESTINO()%>
-                                </th>
+                                </td>
+                                <td>
+                                    <%= enc.getRW_PESO_CONTENEDOR()%>
+                                </td>
+                                <td>
+                                    <%= enc.getRW_ESTADO_CONT()%>
+                                </td>
+                                <td>
+                                    <%= enc.getRW_REFER_SECO_OPERANDO()%>
+                                </td>
+                                <td>
+                                    <%= enc.getRW_PAIS_ORIGEN()%>
+                                </td>
+                                <td>
+                                   <%= enc.getRW_PAIS_DESTINO()%>
+                                </td>
                             </tr>
                             <tr>
+                                <td colspan="8">
+                                  Dice Contener:  <%= enc.getRW_DICE_CONTENER()%>
+                                </td>
+
+                            </tr>
+                            </tr>
+                            <tr class="text-center">                             
+
                                 <th colspan="8">
-                                    Dice Contener:  <%= enc.getRW_DICE_CONTENER()%>
+                                    Observaciones:  <%= enc.getRW_DICE_OBSERVACIONES()%> 
                                 </th>
 
-                            </tr>
-                        </thead>
 
-                        <thead >
+                            </tr>
+                        </tbody>
+
+                        <tbody>
                             <tr class="text-center blue lighten-2" >
                                 <th colspan="2" class="cuerpo"> 
                                     Numero ATC
@@ -181,7 +209,7 @@
                                     <%= enc.getRW_ATC()%> 
                                 </th>
                                 <th colspan="2">
-                                    Nombre Buque:  <%= enc.getRW_NOMBRE_BUQUE()%> 
+                                    Nombre Buque:  
                                 </th>
                                 <th colspan="2">
                                     Viaje: <%= enc.getRW_VIAJE_BARCO()%> 
@@ -202,7 +230,7 @@
                             <tr class="text-center">                             
 
                                 <th colspan="2">
-                                    Nombre:  <%= enc.getRW_NOMBRE_TRANSPORTISTA()%> 
+                                    Nombre:  <%= enc.getRW_ID_TRANSPORTISTA()%> 
                                 </th>
                                 <th olspan="1">
                                     Placa Cabezal: <%= enc.getRW_PLACA_CABEZAL()%> 
@@ -227,42 +255,30 @@
 
                             <tr class="text-center">                             
 
-                                <th colspan="2">
-                                    Nombres:  <%= enc.getRW_NOMBRE_PILOTO()%> 
-                                </th>
-                                <th colspan="2">
-                                    Apellidos: <%= enc.getRW_APELLIDO_PILOTO()%> 
-                                </th>
-                                <th colspan="2">
-                                    Licencia: <%= enc.getRW_LICENCIA_PILOTO()%> 
-                                </th>
-                                <th colspan="2">
-                                    Pais Licencia: <%= enc.getRW_PAIS_LICENCIA_PILOTO()%> 
+                                <th colspan="6">
+                                    Nombres:   <%= enc.getNOMBRE_PILOTO()%> 
                                 </th>
 
-                            </tr>
-                            <tr class="text-center">                             
-
-                                <th colspan="8">
-                                    Observaciones:  <%= enc.getRW_DICE_OBSERVACIONES()%> 
+                                <th colspan="2">
+                                    Licencia:  <%= enc.getLICENCIA_PILOTO()%> 
                                 </th>
 
 
-                            </tr>
-                        </thead> 
-                        <thead>
+                            
+                        </tbody> 
+                        <tbody>
                             <tr>
                                 <th colspan="8" class="center blue lighten-2">Declaracion Aduanera</th>
                             </tr>
-                        </thead>
-                        <thead>
+                        </tbody>
+                        <tbody>
                             <tr>
                                 <th>Numero</th> 
                                 <th colspan="3">Modalidad</th>                             
                                 <th colspan="2">No Orden</th>
                                 <th colspan="2">Observaciones</th>
                             </tr>
-                        </thead>
+                        </tbody>
                         <tbody>
                             <%
 
@@ -306,12 +322,26 @@
 <script type="text/javascript">
     function tablepdf() {
 
-
-        var doc = new jsPDF()
+        var logo = document.getElementById("logo");
+        var doc = new jsPDF('p', 'mm', 'letter');
+        margins = {  
+        top: 150,  
+        bottom: 60,  
+        left: 40,  
+        right: 40,  
+        width: 600  
+    };  
+    var y = 20;  
+    doc.setLineWidth(2);  
+    
+        doc.setLineWidth(2);  
+        doc.addImage(logo, 'PNG', 3, 2);
         doc.autoTable({
-            html: '#customers'
+            html: '#customers',            
+            theme: 'grid',
+            
         })
-        doc.save('table.pdf')
+        doc.save('CartaPorte.pdf');
     }
 </script>
 

@@ -21,3 +21,19 @@ nav{
 .white_text{
     color: #EBF2FC;
 }
+.uno{    
+ 
+ 
+  transform: translate(50%,-50%);
+}
+#two {
+  position: relative;
+  top: 20px;
+  left: 20px;
+  background: blue;
+}
+
+#miTablaPersonalizada th{
+  width: 25%;
+  overflow: auto;
+}
