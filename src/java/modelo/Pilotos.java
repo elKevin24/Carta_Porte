@@ -186,14 +186,13 @@ public class Pilotos {
 
     public List<BeanPilotos> getPiloto(String filtro) throws SQLException {
         List<BeanPilotos> lista = new ArrayList<>();
-        
 
-        String query = "SELECT * FROM jugador "
-                + "WHERE nombre LIKE '%" + filtro + "%' OR "
-                + "pais LIKE '%" + filtro + "%' OR "
-                + "posicion LIKE '%" + filtro + "%' OR "
-                + "equipo LIKE '%" + filtro + "%' OR "
-                + "dorsal LIKE '%" + filtro + "%';";
+        String query = "Select a.visitante, nvl(a.nombre_uno, ' ')  ||' ' || nvl(a.nombre_dos, ' ') ||' ' || nvl(a.apellido_uno, ' ')   ||' ' || nvl(a.apellido_dos, ' ') ||' ' || a.numero_licencia AS PILOTO \n" +
+"from PUERTO.EOPT_VISITANTES A                                                    \n" +
+"WHERE tipo_visitante = 1\n" +
+"and a.estatus = 'A'\n" +
+"and nvl(a.nombre_uno, ' ')  ||' ' || nvl(a.nombre_dos, ' ') ||' ' || nvl(a.apellido_uno, ' ')   ||' ' || nvl(a.apellido_dos, ' ') ||' ' || a.numero_licencia  LIKE '%"+filtro+"%'\n" +
+"ORDER BY a.visitante desc FETCH FIRST  5 ROWS ONLY";
         Conexion c = new Conexion();
         try (Connection con = c.getConexion()) {
 
@@ -202,37 +201,66 @@ public class Pilotos {
 
             try (ResultSet rs = st.executeQuery(query)) {
                 while (rs.next()) {
-             BeanPilotos user = new BeanPilotos();
+                    BeanPilotos user = new BeanPilotos();
 
-            user.setID(rs.getString("visitante"));
-                        user.setNombre(rs.getString("nombre"));
-                        user.setSegundoNombre(rs.getString("nombre_dos"));
-                        user.setApellido(rs.getString("apellido"));
-                        user.setSegundoApellido(rs.getString("apellido_dos"));
-                        user.setLicencia(rs.getString("numero_licencia"));
+                    user.setID(rs.getString("visitante"));
+                    user.setNombre(rs.getString("piloto"));
 
-                        lista.add(user);
+                    lista.add(user);
 
-            
-
-           
+                }
             }
-        }
             st.close();
-        
 
-        con.close();
+            con.close();
 
-        
-    }catch (SQLException e) {
+        } catch (SQLException e) {
             System.err.println("ConsultarLista" + e);
         }
         return lista;
 
     }
 
+    
+    
+    public static BeanPilotos ConsultarPiloto1(String id) {
+        BeanPilotos user = new BeanPilotos();
 
+        try {
+            Conexion c = new Conexion();
+            try (Connection con = c.getConexion()) {
+                Statement st;
+                st = con.createStatement();
+                try (ResultSet rs = st.executeQuery("SELECT\n"
+                        + "    visitante,\n"
+                        + "    nvl(nombre_uno, ' ') nombre,\n"
+                        + "    nvl(nombre_dos, ' ') nombre_dos,\n"
+                        + "    nvl(apellido_uno, ' ') apellido,\n"
+                        + "    nvl(apellido_dos, ' ') apellido_dos,\n"
+                        + "    numero_licencia,\n"
+                        + "    pais_licencia from\n"
+                        + "    puerto.eopt_visitantes\n"
+                        + "WHERE\n"
+                        + "    tipo_visitante = 1\n"
+                        + "    AND estatus = 'A'\n"
+                        + "    and visitante = " + id + "")) {
+                    while (rs.next()) {
+                        user.setID(rs.getString("visitante"));
+                        user.setNombre(rs.getString("nombre"));
+                        user.setSegundoNombre(rs.getString("nombre_dos"));
+                        user.setApellido(rs.getString("apellido"));
+                        user.setSegundoApellido(rs.getString("apellido_dos"));
+                        user.setLicencia(rs.getString("numero_licencia"));
+                        user.setPais_licencia(rs.getString("pais_licencia"));
+                    }
+                }
+                st.close();
+            }
+        } catch (SQLException e) {
 
+            System.err.println("Consultar Piloto" + e);
+        }
+        return user;
 
-
+    }
 }

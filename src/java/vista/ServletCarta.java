@@ -131,7 +131,7 @@ public class ServletCarta extends HttpServlet {
 
         if (request.getParameter("cont").isEmpty()) {
             System.err.println("is empty");
-            response.sendRedirect("Guardado.jsp?id="+ RW_ID_RECEPCION+"");
+            response.sendRedirect("Solicitud_Servicios.jsp");
         } else {
             //Empieza parte de Detalle
             int cont = Integer.valueOf(request.getParameter("cont"));

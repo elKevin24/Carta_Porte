@@ -29,9 +29,9 @@
         <title> Carta de Porte</title>
 
 
-        <%            BeanCarta a = new BeanCarta();
+        <%
+            BeanCarta a = new BeanCarta();
             a = Carta.Consultar();
-
         %>
 
         <jsp:include page="menu.jsp" flush="true"></jsp:include>
@@ -85,7 +85,8 @@
                                         <div class="input-field col s6">
                                             <select class="js-example-basic-single" name="BUQUE" required>
                                                 <option value="" disabled selected>Nombre</option>
-                                            <%                                                LinkedList<BeanCartaBarcos> lista = CartaBarcos.ConsultarLista();
+                                            <%
+                                                LinkedList<BeanCartaBarcos> lista = CartaBarcos.ConsultarLista();
 
                                                 for (int i = 0; i < lista.size(); i++) {
 
@@ -380,24 +381,26 @@
                     </div>
 
                     <div class="row">
-
                         <div class="col s12">
-                            <table border="1" class="table" id="tablaprueba">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th colspan="6" class="center">Declaracion Aduanera</th>
+                            <div class="table-responsive-sm">
 
-                                    </tr>
-                                </thead>
-                                <thead class="thead-dark ">
-                                    <tr class="center">
-                                        <th class="center">Modalidad || Observaciones  || Codigo Region</th>
-                                        <th class="center">Numero de Orden</th>                            
-                                        <th class="center">Observaciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table>
+                                <table border="1" class="table" id="tablaprueba">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th colspan="6" class="center">Declaracion Aduanera</th>
+
+                                        </tr>
+                                    </thead>
+                                    <thead class="thead-dark ">
+                                        <tr class="center">
+                                            <th class="center">Modalidad</th>
+                                            <th class="center">Numero de Orden</th>                            
+                                            <th class="center">Observaciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
 

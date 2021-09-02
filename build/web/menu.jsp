@@ -85,6 +85,7 @@
                                 </div>
                             </li>
                             <li><a href="Login.jsp">Salir</a></li>
+                            <li><a href="buscar.jsp">Salir</a></li>
 
 
                         </ul>
