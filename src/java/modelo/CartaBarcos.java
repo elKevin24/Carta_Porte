@@ -6,14 +6,11 @@
 package modelo;
 
 import controlador.BeanCartaBarcos;
-import controlador.BeanPilotos;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  *

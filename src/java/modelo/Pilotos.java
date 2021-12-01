@@ -5,7 +5,6 @@
  */
 package modelo;
 
-import controlador.BeanCarta;
 import controlador.BeanPilotos;
 import java.sql.Connection;
 import java.sql.ResultSet;

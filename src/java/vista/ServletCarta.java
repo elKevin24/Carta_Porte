@@ -67,7 +67,7 @@ public class ServletCarta extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         String BUQUE = request.getParameter("BUQUE");
-        int salida = BUQUE.indexOf("S");
+        int salida = BUQUE.indexOf("_");
         String SENAL = BUQUE.substring(0, salida);
         String LR = BUQUE.substring(salida + 1);
         String Id_piloto = request.getParameter("PILOTO");
@@ -111,81 +111,80 @@ public class ServletCarta extends HttpServlet {
 
         System.err.println(" " + RW_FECHA_VIAJE_BARCO);
 
-        carta = new BeanCarta(RW_ID_RECEPCION, RW_PREFIJO_CONT, RW_IDENTIFICACION_CONT,
-                RW_C_O_F, RW_MEDIDA, RW_ESTADO_CONT, RW_VIAJE_BARCO, RW_FECHA_VIAJE_BARCO,
-                RW_REFER_SECO_OPERANDO, RW_ATC, RW_PREFIJO_CHASIS, RW_IDENTIFICACION_CHASIS,
-                RW_PLACA_CABEZAL, RW_PAIS_PLACA, RW_PESO_CONTENEDOR, RW_PAIS_ORIGEN,
-                RW_PAIS_DESTINO, RW_DICE_CONTENER, RW_DICE_OBSERVACIONES, RW_USUARIO_SERVICIO, Id_piloto, TRANSPORTISTA, LR, SENAL
-        );
-        boolean recepsion = Carta.agregar(carta);
-        
+        carta = new BeanCarta(RW_ID_RECEPCION, RW_PREFIJO_CONT, RW_IDENTIFICACION_CONT, RW_C_O_F, 
+                RW_MEDIDA, RW_ESTADO_CONT, RW_VIAJE_BARCO, RW_FECHA_VIAJE_BARCO, RW_REFER_SECO_OPERANDO, 
+                RW_ATC, RW_PREFIJO_CHASIS, RW_IDENTIFICACION_CHASIS, RW_PLACA_CABEZAL, RW_PAIS_PLACA, 
+                RW_PESO_CONTENEDOR, RW_PAIS_ORIGEN, RW_PAIS_DESTINO, RW_DICE_CONTENER, RW_DICE_OBSERVACIONES, 
+                RW_USUARIO_SERVICIO, Id_piloto, TRANSPORTISTA, LR, SENAL );
+        String recepcion = Carta.agregar(carta);
 
-        if (recepsion) {
+        if (recepcion != null) {
 
             System.err.println("se guardo carta falta DA");
 
-        } else {
-            out.println(recepsion);
-
-        }
-
-        if (request.getParameter("cont").isEmpty()) {
-            System.err.println("is empty");
-            response.sendRedirect("Solicitud_Servicios.jsp");
-        } else {
-            //Empieza parte de Detalle
-            int cont = Integer.valueOf(request.getParameter("cont"));
-
-            //String Nombre = request.getParameter("Nombre[1]");
-            BeanCarta_Detalle CD = null;
-            BeanCarta_Detalle consulta = new BeanCarta_Detalle();
-            consulta = detalle_carta.Consultar();
-
-            boolean k = false;
-
-            // lo envio pero no afecta en el insert
-            int numero = 4; //numero de inputs
-            String[][] detalle = new String[cont][numero];
-
-            for (int i = 0; i < detalle.length; i++) {
-                int a = i + 1;
-                for (int j = 1; j < detalle[i].length; j++) {
-
-                }
-                detalle[i][1] = request.getParameter("DA[" + a + "]").toUpperCase();
-                detalle[i][2] = request.getParameter("Numero_Orden[" + a + "]").toUpperCase();
-                detalle[i][3] = request.getParameter("Observaciones[" + a + "]").toUpperCase();
-                //Aqui vas obteniendo el id del curso
-            }
-
-            for (String[] detalle1 : detalle) {
-                for (int j = 1; j < detalle1.length; j++) {
-
-                    System.err.println("valor guardado" + detalle1[j]);
-                }
-                //Aqui vas obteniendo el id del curso
-            }
-
-            for (int i = 0; i < detalle.length; i++) {
-                int a = i + 1;
-                for (int j = 1; j < detalle[i].length; j++) {
-
-                }
-
-                CD = new BeanCarta_Detalle(detalle[i][1], RW_ID_RECEPCION, detalle[i][2], detalle[i][3]);
-                k = detalle_carta.agregar(CD);
-            }
-
-            if (k) {
-                //response.sendRedirect("carta_porte.jsp");
-
-                System.out.println("exito detalle");
-                response.sendRedirect("Guardado.jsp?id="+ RW_ID_RECEPCION+"");
-
+            System.err.println("recepcion: " + recepcion);
+            if (request.getParameter("cont").isEmpty()) {
+                System.err.println("is empty");
+                response.sendRedirect("Guardado.jsp?id=" + recepcion + "");
             } else {
+                //Empieza parte de Detalle
+                int cont = Integer.valueOf(request.getParameter("cont"));
 
-                out.println(k);
+                //String Nombre = request.getParameter("Nombre[1]");
+                BeanCarta_Detalle CD = null;
+                BeanCarta_Detalle consulta = new BeanCarta_Detalle();
+                consulta = detalle_carta.Consultar();
+
+                boolean k = false;
+
+                // lo envio pero no afecta en el insert
+                int numero = 4; //numero de inputs
+                String[][] detalle = new String[cont][numero];
+
+                for (int i = 0; i < detalle.length; i++) {
+                    int a = i + 1;
+                    for (int j = 1; j < detalle[i].length; j++) {
+
+                    }
+                    detalle[i][1] = request.getParameter("DA[" + a + "]").toUpperCase();
+                    detalle[i][2] = request.getParameter("Numero_Orden[" + a + "]").toUpperCase();
+                    detalle[i][3] = request.getParameter("Observaciones[" + a + "]").toUpperCase();
+                    //Aqui vas obteniendo el id del curso
+                }
+
+                for (String[] detalle1 : detalle) {
+                    for (int j = 1; j < detalle1.length; j++) {
+
+                        System.err.println("valor guardado" + detalle1[j]);
+                    }
+                    //Aqui vas obteniendo el id del curso
+                }
+
+                for (int i = 0; i < detalle.length; i++) {
+                    int a = i + 1;
+                    for (int j = 1; j < detalle[i].length; j++) {
+
+                    }
+
+                    CD = new BeanCarta_Detalle(detalle[i][1], recepcion, detalle[i][2], detalle[i][3]);
+                    k = detalle_carta.agregar(CD);
+                }
+
+                if (k) {
+                    //response.sendRedirect("carta_porte.jsp");
+
+                    System.out.println("exito detalle");
+                    response.sendRedirect("Guardado.jsp?id=" + recepcion + "");
+
+                } else {
+
+                    out.println(k);
+                }
+
             }
+
+        } else {
+            System.err.println("No se guardo carta ");
 
         }
 

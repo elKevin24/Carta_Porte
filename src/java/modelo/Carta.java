@@ -18,9 +18,10 @@ import java.util.LinkedList;
  */
 public class Carta {
 
-    public static boolean agregar(BeanCarta Carta) {
-        boolean agregado = false;
-
+    public static String agregar(BeanCarta Carta) {
+        
+        String sql = null;
+        String ID = Consultar();
         int medida = Integer.parseInt(Carta.getRW_MEDIDA());
 
         try {
@@ -30,7 +31,7 @@ public class Carta {
                 Statement st;
                 st = con.createStatement();
                 //campos de la tabla
-                String sql = "INSERT INTO PUERTO.RECEPCION_WEB "
+                sql = "INSERT INTO PUERTO.RECEPCION_WEB "
                         + "(RW_ID_RECEPCION,"
                         + "RW_PREFIJO_CONT,"
                         + "RW_IDENTIFICACION_CONT,"
@@ -57,7 +58,7 @@ public class Carta {
                         + "RW_ID_TRANSPORTISTA,"
                         + "RW_LR,"
                         + "RW_SENAL_DISTINTIVA) VALUES "
-                        + "('" + Carta.getRW_ID_RECEPCION() + "','" + Carta.getRW_PREFIJO_CONT() + "','" + Carta.getRW_IDENTIFICACION_CONT() + "','" + Carta.getRW_C_O_F() + "','" + medida + "',"
+                        + "('" + ID + "','" + Carta.getRW_PREFIJO_CONT() + "','" + Carta.getRW_IDENTIFICACION_CONT() + "','" + Carta.getRW_C_O_F() + "','" + medida + "',"
                         + "'" + Carta.getRW_VIAJE_BARCO() + "',TO_DATE('" + Carta.getRW_FECHA_VIAJE_BARCO() + "', 'YYYY-MM-DD HH24:MI:SS'),'T','" + Carta.getRW_REFER_SECO_OPERANDO() + "',"
                         + "'" + Carta.getRW_ATC() + "','" + Carta.getRW_PREFIJO_CHASIS() + "','" + Carta.getRW_IDENTIFICACION_CHASIS() + "','" + Carta.getRW_PLACA_CABEZAL() + "',"
                         + "'" + Carta.getRW_PAIS_PLACA() + "','" + Carta.getRW_PESO_CONTENEDOR() + "','" + Carta.getRW_PAIS_ORIGEN() + "', '" + Carta.getRW_PAIS_DESTINO() + "', '" + Carta.getRW_DICE_CONTENER() + "', '" + Carta.getRW_DICE_OBSERVACIONES() + "', sysdate, " + Carta.getRW_ESTADO_CONT() + ", "
@@ -66,18 +67,18 @@ public class Carta {
 
 //               INSERT INTO COTIZADOR_WEB.CW_EOPT_BARCOS (LR, SENAL_DISTINTICA, TIPO_DE_BARCO_POR_ESTRUCTURA, USUARIO_DE_SERVICIO, NOMBRE_DEL_BUQUE, BANDERA, TRB, TRN, TPM, CALADO, ESLORA, MANGA, BITA_USUARIO_INSERTA) VALUES "
 //                      + "('"+ En.getLR()+"','"+En.getSENAL_DISTINTIVA()+"','"+En.getTIPO_DE_BARCO_POR_ESTRUCTURA()+"',"+En.getUSUARIO_DE_SERVICIO()+" ,'"+En.getNOMBRE_DEL_BUQUE()+"' ,'"+En.getBANDERA()+"','"+En.getTRB()+"','"+En.getTRN()+"','"+En.getTPM()+"','"+En.getCALADO()+"','"+En.getESLORA()+"','"+En.getMANGA()+"','"+En.getBITA_USUARIO_INSERTA()+"')";
-                System.out.println(sql);
                 st.execute(sql);
 
-                agregado = true;
+                
                 st.close();
             }
 
         } catch (SQLException e) {
-            agregado = false;
+            ID = null;
+            System.out.println(sql);
             System.err.println(" " + e);
         }
-        return agregado;
+        return ID;
     }
 
     public static boolean agregarTrazabilidad(String recepcion) {
@@ -100,10 +101,7 @@ public class Carta {
                         + "    2,\n"
                         + "    " + recepcion + ",\n"
                         + "    sysdate)";
-//                        + "('1','tmu','12345678','C','20','GUATE','1','13/05/2020','T','S','TOMAS', 'CORTEZ','1234564', 'GT','1231564' ,'987654','CHA','123456','TRANSPORTES', 'C0954ABC', 'GT', '1000', 'GT', 'SV', 'ALMOHADAS', 'OBSERVACIONES', '123456', sysdate)";
 
-//               INSERT INTO COTIZADOR_WEB.CW_EOPT_BARCOS (LR, SENAL_DISTINTICA, TIPO_DE_BARCO_POR_ESTRUCTURA, USUARIO_DE_SERVICIO, NOMBRE_DEL_BUQUE, BANDERA, TRB, TRN, TPM, CALADO, ESLORA, MANGA, BITA_USUARIO_INSERTA) VALUES "
-//                      + "('"+ En.getLR()+"','"+En.getSENAL_DISTINTIVA()+"','"+En.getTIPO_DE_BARCO_POR_ESTRUCTURA()+"',"+En.getUSUARIO_DE_SERVICIO()+" ,'"+En.getNOMBRE_DEL_BUQUE()+"' ,'"+En.getBANDERA()+"','"+En.getTRB()+"','"+En.getTRN()+"','"+En.getTPM()+"','"+En.getCALADO()+"','"+En.getESLORA()+"','"+En.getMANGA()+"','"+En.getBITA_USUARIO_INSERTA()+"')";
                 System.out.println(sql);
                 st.execute(sql);
 
@@ -291,10 +289,10 @@ public class Carta {
         return actualizado;
     }
 
-    public static BeanCarta Consultar() {
-        BeanCarta user = new BeanCarta();
-        System.out.println("entrando a consultar");
+    public static String Consultar() {
 
+        System.out.println("entrando a consultar");
+        String ID = null;
         try {
             Conexion c = new Conexion();
             try (Connection con = c.getConexion()) {
@@ -305,7 +303,7 @@ public class Carta {
                         + "puerto.recepcion_web")) {
                     while (rs.next()) {
 
-                        user.setRW_ID_RECEPCION(rs.getString("RW_ID_RECEPCION"));
+                        ID = rs.getString("RW_ID_RECEPCION");
                     }
                 }
                 st.close();
@@ -314,7 +312,8 @@ public class Carta {
 
             System.err.println("" + e);
         }
-        return user;
+
+        return ID;
 
     }
 
@@ -423,7 +422,7 @@ public class Carta {
                         + "    B.rw_observaciones_opip\n"
                         + "FROM\n"
                         + "    puerto.recepcion_web_te A, PUERTO.recepcion_web B\n"
-                        + "    where A.rw_id_recepcion = "+id+"\n"
+                        + "    where A.rw_id_recepcion = " + id + "\n"
                         + "    and A.rw_id_recepcion = B.rw_id_recepcion")) {
                     while (rs.next()) {
                         BeanCarta user = new BeanCarta();

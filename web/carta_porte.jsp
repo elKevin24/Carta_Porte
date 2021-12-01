@@ -28,18 +28,14 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <title> Carta de Porte</title>
 
-
-        <%
-            BeanCarta a = new BeanCarta();
-            a = Carta.Consultar();
-        %>
-
         <jsp:include page="menu.jsp" flush="true"></jsp:include>
 
             <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
             <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
             <style>
-                body {background-color: #eceff1;}
+                body {
+                    background-color: #eceff1;
+                }
 
             </style>
         </head>
@@ -97,21 +93,15 @@
 
                                             %>
 
-                                            <option value="<%= lista.get(i).getSENAL()%>S<%= lista.get(i).getLR()%>"><%= lista.get(i).getNOMBRE()%></option>
+                                            <option value="<%= lista.get(i).getSENAL()%>_<%= lista.get(i).getLR()%>"><%= lista.get(i).getNOMBRE()%></option>
                                             <%
                                                 }
 
                                             %>
                                         </select>
                                     </div>
-
-
-
                                 </div>
-
                             </div>
-
-
                         </div> 
                     </div> 
 
@@ -130,11 +120,11 @@
                                 <label for="Prefijo">Prefijo</label>
                             </div>
                             <div class="input-field col s2">
-                                <input id="Numero_Contenedor" type="number" class="validate" name="RW_IDENTIFICACION_CONT" required maxlength="12">
+                                <input id="Numero_Contenedor" type="number" class="validate" name="RW_IDENTIFICACION_CONT" min="0" required maxlength="12">
                                 <label for="Numero_Contenedor">Numero Contenedor</label>
                             </div>
                             <div class="input-field col s3">
-                                <input id="Peso" type="number" class="validate" name="RW_PESO_CONTENEDOR" required maxlength="10">
+                                <input id="Peso" type="number" class="validate" name="RW_PESO_CONTENEDOR" min="0" required maxlength="10">
                                 <label for="Peso">Peso</label>
                             </div>
                             <div class="input-field col s3">
@@ -295,14 +285,12 @@
                                 <label for="Placa">Placa Cabezal</label>
                             </div>
 
-
-
                             <div class="input-field col s2">
                                 <input id="Prefijo_Chasis" type="text" class="validate" name="RW_PREFIJO_CHASIS" required maxlength="6">
                                 <label for="Prefijo_Chasis">Prefijo Chasis</label>
                             </div>
                             <div class="input-field col s2">
-                                <input id="Numero_Chasis" type="number" class="validate" name="RW_IDENTIFICACION_CHASIS" required maxlength="12">
+                                <input id="Numero_Chasis" type="number" class="validate" name="RW_IDENTIFICACION_CHASIS" min="0" required maxlength="12">
                                 <label for="Numero_Chasis">Numero Chasis</label>
                             </div>
                             <div class="input-field col s2">
@@ -412,7 +400,7 @@
 
 
                     <input type="hidden" value ="" id="cont" name="cont">
-                    <input type="hidden"  name="RW_ID_RECEPCION" value="<%=a.getRW_ID_RECEPCION()%>" >
+                    <input type="hidden"  name="RW_ID_RECEPCION" value="" >
                     <input type="hidden"  name="USUARIO_DE_SERVICIO" value="19165011" required>
 
                     <div class="input-field">
