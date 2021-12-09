@@ -186,12 +186,12 @@ public class Pilotos {
     public List<BeanPilotos> getPiloto(String filtro) throws SQLException {
         List<BeanPilotos> lista = new ArrayList<>();
 
-        String query = "Select a.visitante, nvl(a.nombre_uno, ' ')  ||' ' || nvl(a.nombre_dos, ' ') ||' ' || nvl(a.apellido_uno, ' ')   ||' ' || nvl(a.apellido_dos, ' ') ||' ' || a.numero_licencia AS PILOTO \n" +
-"from PUERTO.EOPT_VISITANTES A                                                    \n" +
-"WHERE tipo_visitante = 1\n" +
-"and a.estatus = 'A'\n" +
-"and nvl(a.nombre_uno, ' ')  ||' ' || nvl(a.nombre_dos, ' ') ||' ' || nvl(a.apellido_uno, ' ')   ||' ' || nvl(a.apellido_dos, ' ') ||' ' || a.numero_licencia  LIKE '%"+filtro+"%'\n" +
-"ORDER BY a.visitante desc FETCH FIRST  5 ROWS ONLY";
+        String query = "Select a.visitante, nvl(a.nombre_uno, ' ')  ||' ' || nvl(a.nombre_dos, ' ') ||' ' || nvl(a.apellido_uno, ' ')   ||' ' || nvl(a.apellido_dos, ' ') AS PILOTO , a.numero_licencia AS LICENCIA \n"
+                + "                from PUERTO.EOPT_VISITANTES A \n"
+                + "                WHERE tipo_visitante = 1\n"
+                + "                and a.estatus = 'A'\n"
+                + "                and nvl(a.nombre_uno, ' ')  ||' ' || nvl(a.nombre_dos, ' ') ||' ' || nvl(a.apellido_uno, ' ')   ||' ' || nvl(a.apellido_dos, ' ')  LIKE '%" + filtro + "%'\n"
+                + "                or a.numero_licencia LIKE '%" + filtro + "%'";
         Conexion c = new Conexion();
         try (Connection con = c.getConexion()) {
 
@@ -204,6 +204,7 @@ public class Pilotos {
 
                     user.setID(rs.getString("visitante"));
                     user.setNombre(rs.getString("piloto"));
+                    user.setLicencia(rs.getString("LICENCIA"));
 
                     lista.add(user);
 
@@ -220,8 +221,6 @@ public class Pilotos {
 
     }
 
-    
-    
     public static BeanPilotos ConsultarPiloto1(String id) {
         BeanPilotos user = new BeanPilotos();
 

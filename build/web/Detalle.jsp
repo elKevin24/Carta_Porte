@@ -84,7 +84,12 @@
 
 
             <div class="container">
-                <input type="image" onclick="exportTableToExcel('customers', 'empornac')" src="img/xls.png" width="150px" height="100px">
+                <br>
+                <div class="align-items-center center">
+                    <input type="image" onclick="exportTableToExcel('customers', 'empornac')" src="img/excel.png">
+                    <input type="image" onclick="tablepdf()" src="img/pdf.png">
+
+                </div>
                 <div class="table-responsive-lg">
                     <div id="render_me">
                         <table id="customers" class="table table-bordered table-striped table-hover" class="text-center">
@@ -130,7 +135,7 @@
                                 </th>
                                 <th>
                                     Medida
-                                    
+
                                 </th>
                                 <th>
                                     Peso
@@ -157,7 +162,7 @@
                                     <%= enc.getRW_PREFIJO_CONT()%> <%= enc.getRW_IDENTIFICACION_CONT()%>
                                 </td>
                                 <td>
-                                    
+
                                     <%= enc.getRW_MEDIDA()%>
                                 </td>
                                 <td>
@@ -173,12 +178,12 @@
                                     <%= enc.getRW_PAIS_ORIGEN()%>
                                 </td>
                                 <td>
-                                   <%= enc.getRW_PAIS_DESTINO()%>
+                                    <%= enc.getRW_PAIS_DESTINO()%>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="8">
-                                  Dice Contener:  <%= enc.getRW_DICE_CONTENER()%>
+                                    Dice Contener:  <%= enc.getRW_DICE_CONTENER()%>
                                 </td>
 
                             </tr>
@@ -264,7 +269,7 @@
                                 </th>
 
 
-                            
+
                         </tbody> 
                         <tbody>
                             <tr>
@@ -305,17 +310,7 @@
                 </div>
             </div>
         </div>
-
     </div>
-
-
-    <button onclick="tablepdf()">
-        PDF
-
-    </button>
-
-
-
 </div>
 
 
@@ -324,22 +319,22 @@
 
         var logo = document.getElementById("logo");
         var doc = new jsPDF('p', 'mm', 'letter');
-        margins = {  
-        top: 150,  
-        bottom: 60,  
-        left: 40,  
-        right: 40,  
-        width: 600  
-    };  
-    var y = 20;  
-    doc.setLineWidth(2);  
-    
-        doc.setLineWidth(2);  
+        margins = {
+            top: 150,
+            bottom: 60,
+            left: 40,
+            right: 40,
+            width: 600
+        };
+        var y = 20;
+        doc.setLineWidth(2);
+
+        doc.setLineWidth(2);
         doc.addImage(logo, 'PNG', 3, 2);
         doc.autoTable({
-            html: '#customers',            
+            html: '#customers',
             theme: 'grid',
-            
+
         })
         doc.save('CartaPorte.pdf');
     }
